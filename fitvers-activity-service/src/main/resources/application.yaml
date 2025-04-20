@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: firverse-activity-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/firverse_activity
+      database: firverse_activity
+server:
+  port: 8082
