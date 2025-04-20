@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: fitverse-user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/fitverse_user
+    username: root
+    password: ayush@123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
