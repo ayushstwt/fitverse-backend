@@ -1,7 +1,7 @@
 package com.ayshriv.fitversuserservice.service.impl;
 
-import com.ayshriv.fitversuserservice.dtos.RegisterRequest;
-import com.ayshriv.fitversuserservice.dtos.UserResponse;
+import com.ayshriv.fitversuserservice.dto.RegisterRequest;
+import com.ayshriv.fitversuserservice.dto.UserResponse;
 import com.ayshriv.fitversuserservice.entities.User;
 import com.ayshriv.fitversuserservice.repositories.UserRepository;
 import com.ayshriv.fitversuserservice.service.UserService;
@@ -55,5 +55,10 @@ public class UserServiceImpl implements UserService {
         userResponse.setCreatedOn(saveUser.getCreatedOn());
         userResponse.setUpdatedOn(saveUser.getUpdatedOn());
         return userResponse;
+    }
+
+    @Override
+    public Boolean existByUserId(long l) {
+        return userRepository.existsById(l);
     }
 }

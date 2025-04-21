@@ -1,35 +1,30 @@
-package com.ayshriv.fitversuserservice.dtos;
-
+package com.ayshriv.fitversuserservice.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
-public class RegisterRequest {
+import java.time.LocalDateTime;
+
+public class UserResponse {
 
     @JsonProperty("first_name")
-    @NotBlank(message = "First name is required")
-    @Size(min = 2, message = "First name should be at least 2 characters")
     private String firstName;
 
     @JsonProperty("last_name")
-    @NotBlank(message = "Last name is required")
-    @Size(min = 2, message = "Last name should be at least 2 characters")
     private String lastName;
 
     @JsonProperty("email")
-    @Email(message = "Email should be valid")
-    @NotBlank(message = "Email is required")
     private String email;
 
-    @NotBlank(message = "Phone number is required")
     @JsonProperty("phone")
     private String phone;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password should be at least 6 characters")
     @JsonProperty("password")
     private String password;
+
+    @JsonProperty("created_on")
+    private LocalDateTime createdOn;
+
+    @JsonProperty("updated_on")
+    private LocalDateTime updatedOn;
 
     public String getFirstName() {
         return firstName;
@@ -69,5 +64,21 @@ public class RegisterRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
     }
 }

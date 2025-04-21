@@ -5,6 +5,7 @@ import com.ayshriv.fitversactivityservice.dto.ActivityResponse;
 import com.ayshriv.fitversactivityservice.entities.Activity;
 import com.ayshriv.fitversactivityservice.repositories.ActivityRepository;
 import com.ayshriv.fitversactivityservice.service.ActivityService;
+import com.ayshriv.fitversactivityservice.service.UserValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,16 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Autowired
     private ActivityRepository activityRepository;
+    @Autowired
+    private UserValidationService userValidationService;
+
 
     @Override
     public ActivityResponse trackActivity(ActivityRequest request) {
+        boolean isValidUser = userValidationService.validateUser(request.getUserId());
+        if (!isValidUser) {
+            throw new RuntimeException("Invalid user ID: " + request.getUserId());
+        }
         ActivityResponse response = new ActivityResponse();
         Activity activity=new Activity();
         activity.setUserId(request.getUserId());

@@ -1,7 +1,7 @@
 package com.ayshriv.fitversuserservice.controllers;
 
-import com.ayshriv.fitversuserservice.dtos.RegisterRequest;
-import com.ayshriv.fitversuserservice.dtos.UserResponse;
+import com.ayshriv.fitversuserservice.dto.RegisterRequest;
+import com.ayshriv.fitversuserservice.dto.UserResponse;
 import com.ayshriv.fitversuserservice.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +26,11 @@ public class UserController {
     {
         return ResponseEntity.ok(userService.register(request));
     }
+
+    @PostMapping("/validate/{userId}")
+    public ResponseEntity<Boolean> validateUser(@PathVariable String userId)
+    {
+        return ResponseEntity.ok(userService.existByUserId(Long.parseLong(userId)));
+    }
+
 }
